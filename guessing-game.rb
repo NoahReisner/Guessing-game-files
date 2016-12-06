@@ -66,39 +66,49 @@ class GuessingGame
 
   def run
     # Edit this to add the code to start running the game here!
-    begin
+
       puts "how big of of a word do you want to play with?"
       @word_length = gets.chomp.to_i
-      puts @word_length.to_s
-      @lives = (@word_length + 5)
-      puts @lives.to_s
+      @lives = (@word_length + 4)
       @secret_word = pick_random_word
-    end until @secret_word.length > 0
+      puts @secret_word
+      while @secret_word == ''
+
+          puts "No word found. Please pick a different word length"
+          @word_length = gets.chomp.to_i
+            @secret_word = pick_random_word
+
+        end
+
+    end
+
     puts @secret_word
     @display_word = hide_word
     puts @display_word.join
 
     begin
+      puts 'Number of lives ' + @lives.to_s
       @guessed_letter = ask_for_letters
       if check_letter_list == false
         @letter_list.push @guessed_letter
-        puts @guessed_letter
           after_check =  check_word
         if false == after_check
-          puts 'wrong'
+          puts 'Letter not found.'
           @lives = @lives - 1
         else
           after_check = @display_word
         end
         puts @display_word.join
       else
-        puts 'Already guessed'
+        puts 'letter Already guessed'
         @lives = @lives - 1
       end
       if @lives == 0
+        puts "GAME OVER. You ran out of lives."
         @end_value = true
       end
       if @secret_word == @display_word.join
+        puts 'Congradulations You WON!!!!!!!!!!!!!!!!!!!!!!!!!!'
         @end_value = true
       end
     end until @end_value == true
