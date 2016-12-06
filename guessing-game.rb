@@ -20,6 +20,10 @@ class GuessingGame
       if item.length == @word_length
         temp.push item
       end
+
+    end
+    if temp == []
+      return false
     end
     return temp[(rand(temp.length))]
   end
@@ -69,18 +73,19 @@ class GuessingGame
 
       puts "how big of of a word do you want to play with?"
       @word_length = gets.chomp.to_i
-      @lives = (@word_length + 4)
-      @secret_word = pick_random_word
-      puts @secret_word
-      while @secret_word == ''
 
+      @secret_word = pick_random_word
+      puts @secret_word.to_s
+       until @secret_word != false
           puts "No word found. Please pick a different word length"
           @word_length = gets.chomp.to_i
-            @secret_word = pick_random_word
+          puts @word_length.to_s
 
+            @secret_word = pick_random_word
+            puts @secret_word.to_s
         end
 
-    end
+        @lives = (@word_length + 4)
 
     puts @secret_word
     @display_word = hide_word
@@ -114,7 +119,6 @@ class GuessingGame
     end until @end_value == true
         puts "Sorry, this game is still under development."
   end # end run method
-
 end # end class definition
 
 #####################################################################
