@@ -8,7 +8,7 @@ class GuessingGame
     @lives = 0
     @letter_list = []
     @word_length = 0
-    @secret_word = ''
+    @secret_word = "cat"
     @guessed_letter = ''
     @display_word = []
     @end_value = ''
@@ -118,6 +118,7 @@ class GuessingGame
       end
     end until @end_value == true
         puts "Sorry, this game is still under development."
+
   end # end run method
 end # end class definition
 
